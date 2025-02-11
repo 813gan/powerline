@@ -40,6 +40,17 @@
   :group 'powerline
   :type 'boolean)
 
+(defcustom powerline-gc-cons-threshold
+  (max gc-cons-threshold (* 1000 1000 2 (car (get 'gc-cons-threshold 'standard-value))))
+  "Value for `gc-cons-threshold' used during mode-line evaluation."
+  :group 'powerline
+  :type 'natnum)
+
+(defcustom powerline-gc-cons-percentage (max 0.7 gc-cons-percentage)
+  "Value for `gc-cons-percentage' used during mode-line evaluation."
+  :group 'powerline
+  :type 'float)
+
 ;;;###autoload
 (defun powerline-default-theme ()
   "Setup the default mode-line."
@@ -47,7 +58,9 @@
   (setq-default mode-line-format
                 '("%e"
                   (:eval
-                   (let* ((active (powerline-selected-window-active))
+                   (let* ((gc-cons-threshold powerline-gc-cons-threshold)
+                          (gc-cons-percentage powerline-gc-cons-percentage)
+                          (active (powerline-selected-window-active))
                           (mode-line-buffer-id (if active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
                           (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face0 (if active 'powerline-active0 'powerline-inactive0))
@@ -105,7 +118,9 @@
   (setq-default mode-line-format
                 '("%e"
                   (:eval
-                   (let* ((active (powerline-selected-window-active))
+                   (let* ((gc-cons-threshold powerline-gc-cons-threshold)
+                          (gc-cons-percentage powerline-gc-cons-percentage)
+                          (active (powerline-selected-window-active))
                           (mode-line-buffer-id (if active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
                           (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face0 (if active 'powerline-active0 'powerline-inactive0))
@@ -157,7 +172,9 @@
   (setq-default mode-line-format
                 '("%e"
                   (:eval
-                   (let* ((active (powerline-selected-window-active))
+                   (let* ((gc-cons-threshold powerline-gc-cons-threshold)
+                          (gc-cons-percentage powerline-gc-cons-percentage)
+                          (active (powerline-selected-window-active))
                           (mode-line-buffer-id (if active 'mode-line-buffer-id 'mode-line-buffer-id-inactive))
                           (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face0 (if active 'powerline-active0 'powerline-inactive0))
@@ -217,7 +234,9 @@
   (setq-default mode-line-format
                 '("%e"
                   (:eval
-                   (let* ((active (powerline-selected-window-active))
+                   (let* ((gc-cons-threshold powerline-gc-cons-threshold)
+                          (gc-cons-percentage powerline-gc-cons-percentage)
+                          (active (powerline-selected-window-active))
                           (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face0 (if active 'powerline-active0 'powerline-inactive0))
                           (face1 (if active 'powerline-active1 'powerline-inactive1))
@@ -270,7 +289,9 @@
   (setq-default mode-line-format
                 '("%e"
                   (:eval
-                   (let* ((active (powerline-selected-window-active))
+                   (let* ((gc-cons-threshold powerline-gc-cons-threshold)
+                          (gc-cons-percentage powerline-gc-cons-percentage)
+                          (active (powerline-selected-window-active))
                           (face0 (if active 'powerline-active0 'powerline-inactive0))
                           (lhs (list (powerline-raw (concat "GNU Emacs "
                                                             (number-to-string
